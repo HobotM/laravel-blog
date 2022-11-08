@@ -32,3 +32,9 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
+
+
+
+Route::get('admin/posts/create',[PostController::class, 'create'])->middleware('admin');
+Route::post('admin/posts',[PostController::class, 'store'])->middleware('admin');
+
