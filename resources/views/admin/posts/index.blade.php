@@ -31,6 +31,17 @@
                                 <a href="/admin/posts/{{$post->id}}/edit"
                                     class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-600 hover:text-white focus:outline-none">Edit</button>
                             </td>
+
+                            <td
+                                class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
+
+                                    <form method="POST" action="/admin/posts/{{$post->id}}">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button class="px-5 py-2 border-red-500 border text-red-500 rounded transition duration-300 hover:bg-red-600 hover:text-white focus:outline-none">Delete</button>
+                                    </form>
+                            </td>
                         </tr>
                         @endforeach
 
