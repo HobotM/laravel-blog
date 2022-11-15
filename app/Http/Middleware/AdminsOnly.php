@@ -19,7 +19,7 @@ class AdminsOnly
     {
 
 
-        if (auth()->user()?->username !== 'Matt'){
+        if (auth()->user()?->cannot('admin')){
             abort(Response::HTTP_FORBIDDEN);
         }
 

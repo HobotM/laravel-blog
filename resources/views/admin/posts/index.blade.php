@@ -14,18 +14,18 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                 <div class="text-sm leading-5 text-blue-900">
                                     <a href="/posts/{{$post->slug}}">
+                                        {{$post->id}}
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                <div class="text-sm leading-5 text-blue-900">
+                                    <a href="/posts/{{$post->slug}}">
                                         {{$post->title}}
                                     </a>
-                                    </div>
+                                </div>
                             </td>
-                            <td
-                                class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                                <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                    <span class="relative text-xs">Published</span>
-                                </span>
-                            </td>
+
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
                                 <a href="/admin/posts/{{$post->id}}/edit"
