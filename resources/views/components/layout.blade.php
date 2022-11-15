@@ -40,8 +40,12 @@
                             <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->username }}</span>
                         </x-slot>
 
+                        @if(auth()->user()->can('admin'))
                         <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
                         <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
+                        @endif
+
+
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                         <form method="POST" id="logout-form" action="/logout" class="hidden">
                             @csrf
