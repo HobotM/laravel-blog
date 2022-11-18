@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Notifications\WelcomeEmail;
 
 class RegisterController extends Controller
 {
@@ -27,9 +28,10 @@ class RegisterController extends Controller
         ]);
 
        $user = User::create($attributes);
+       $user->notify(new WelcomeEmail($user));
 
         auth()->login($user);
 
-        return redirect('/')->with('success', 'Your account has been created');;
+        return redirect('/')->with('success', 'Your account has been created, check your email!');;
     }
 }
