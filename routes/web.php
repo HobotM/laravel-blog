@@ -15,6 +15,7 @@ use App\Services\Newsletter;
 use Illuminate\Validation\ValidationException;
 
 
+
 Route::get('/',[PostController::class,'index'])->name('home');
 Route::get('posts/{post:slug}',[PostController::class, 'show']);
 
