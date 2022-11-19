@@ -18,32 +18,34 @@
                             link to reset your password!
                         </p>
                     </div>
-                    <form action="" method="POST" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                    <form action="{{ route('forget.password.post') }}" method="POST" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                         @csrf
-                        @if(session('status'))
-                        {{session('status')}}
-                        @endif
+
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-black-500" for="email">
                                 Email
                             </label>
-                            <input
+                            <div>
+                                <input
                                 class="w-full px-3 py-2 text-sm leading-tight text-blue-500 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="email"
-                                type="email"
+                                type="text"
+                                name="email"
+                                required
+                                autofocus
                                 placeholder="Enter Email Address..."
                             />
+                            @if ($errors->has('email'))
+                            <span class="text-red-500 text-xs mt-1">{{ $errors->first('email') }}</span>
+                            @endif</div>
 
-                            @error('email')
-                            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                            @enderror
+
 
                         </div>
                         <div class="mb-6 text-center">
                             <button
                                 class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:shadow-outline"
-                                type="button"
-                            >
+                                type="submit">
                                 Reset Password
                             </button>
                         </div>
