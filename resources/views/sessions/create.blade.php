@@ -11,6 +11,7 @@
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                     <x-form.input name="password" type="password" autocomplete="new-password" />
+                    <a href="/password/reset" class="float-right text-blue-500 font-medium flex">Forgot password?</a>
                     @error('password')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
