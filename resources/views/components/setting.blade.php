@@ -17,6 +17,9 @@
                 <li>
                     <a href="/admin/posts/create" class="{{request()->is('admin/posts/create') ? 'text-blue-500' : ''}}">New Post</a>
                 </li>
+                <li>
+                    <a href="/admin/users" class="{{request()->is('admin/users') ? 'text-blue-500' : ''}}">All Users</a>
+                </li>
             </ul>
         </aside>
 

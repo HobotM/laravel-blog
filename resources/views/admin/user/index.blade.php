@@ -9,7 +9,7 @@
                 <table class="min-w-full">
 
                     <tbody class="bg-white">
-                        @foreach ( $posts as $post )
+                        @foreach ( $users as $user )
                         <tr>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -17,50 +17,56 @@
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Title
+                                Name
                             </th>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Author
+                                Username
                             </th>
-
-                            <th colspan="2"
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Email
+                            </th>
+                            <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Action
                             </th>
-
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                 <div class="text-sm leading-5 text-blue-900">
-                                    <a href="/posts/{{$post->slug}}">
-                                        {{$post->id}}
-                                    </a>
+
+                                        {{$user->id}}
+
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                 <div class="text-sm leading-5 text-blue-900">
-                                    <a href="/posts/{{$post->slug}}">
-                                        {{$post->title}}
-                                    </a>
+
+                                        {{$user->name}}
+
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                 <div class="text-sm leading-5 text-blue-900">
-                                        {{$post->author->name}}
+
+                                        {{$user->username}}
+
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                <div class="text-sm leading-5 text-blue-900">
+
+                                        {{$user->email}}
+
                                 </div>
                             </td>
 
-                            <td
-                                class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                                <a href="/admin/posts/{{$post->id}}/edit"
-                                    class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-600 hover:text-white focus:outline-none">Edit</button>
-                            </td>
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
 
-                                    <form method="POST" action="/admin/posts/{{$post->id}}">
+                                    <form method="POST" action="/admin/users/{{$user->id}}">
                                         @csrf
                                         @method('DELETE')
 

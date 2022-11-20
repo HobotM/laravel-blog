@@ -6,6 +6,8 @@ use Illuminate\Validation\Rule;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+
 
 class AdminPostController extends Controller
 {
@@ -25,7 +27,7 @@ class AdminPostController extends Controller
     {
         Post::create(array_merge($this->validatePost(), [
             'user_id' => request()->user()->id,
-            'thumbnail' => request()->file('thumbnail')->store('thumbnails')
+            'thumbnail' => request()->file('thumbnail')->store('/images/thumbnails')
         ]));
 
         return redirect('/');
@@ -51,6 +53,14 @@ class AdminPostController extends Controller
 
     public function destroy(Post $post)
     {
+
+        $path = $post->thumbnail;
+
+        if(Storage::disk('public')->exists($path))
+        {
+            Storage::disk('public')->delete($path);
+        }
+
         $post->delete();
 
         return back()->with('success', 'Post Deleted!');
