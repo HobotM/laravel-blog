@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\AdminPostController;
+
 
 
 class AdminUserController extends Controller
@@ -20,9 +22,24 @@ class AdminUserController extends Controller
     }
     public function destroy(User $user)
     {
-        $user->delete();
+        if(request()->user()->id !== $user->id){
+            $user->posts->each(function ($post) {
+                if(Storage::disk('public')->exists($post->thumbnail))
+                {
+                    Storage::disk('public')->delete($post->thumbnail);
+                    $post->delete();
+                }
+            });
+            $user->delete();
 
-        return back()->with('success', 'User Deleted!');
+            return back()->with('success', 'User Deleted!');
+        }
+        else
+        return back()->with('error', 'Cannot delete');
+
+
+
+
     }
 
 }

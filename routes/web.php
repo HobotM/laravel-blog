@@ -31,14 +31,6 @@ Route::get('register', [RegisterController::class, 'create'])->middleware('guest
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
 
-//login
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('sessions', [SessionsController::class, 'store'])->middleware('guest');
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
-
-//comment
-Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
-
 //admin section
 Route::post('admin/posts',[AdminPostController::class, 'store'])->middleware('admin');
 Route::get('admin/posts/create',[AdminPostController::class, 'create'])->middleware('admin');
@@ -51,6 +43,16 @@ Route::get('admin/posts/{post}/edit',[AdminPostController::class, 'edit'])->midd
 
 Route::patch('admin/posts/{post}',[AdminPostController::class, 'update'])->middleware('admin');
 Route::delete('admin/posts/{post}',[AdminPostController::class, 'destroy'])->middleware('admin');
+
+//login
+Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
+Route::post('sessions', [SessionsController::class, 'store'])->middleware('guest');
+Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+//comment
+Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
+
+
 
 
 

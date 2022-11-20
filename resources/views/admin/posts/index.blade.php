@@ -9,7 +9,6 @@
                 <table class="min-w-full">
 
                     <tbody class="bg-white">
-                        @foreach ( $posts as $post )
                         <tr>
                             <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -30,6 +29,9 @@
                             </th>
 
                         </tr>
+
+                        @foreach ( $posts as $post )
+
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                 <div class="text-sm leading-5 text-blue-900">
