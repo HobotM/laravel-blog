@@ -56,14 +56,24 @@ class AdminPostController extends Controller
 
         $path = $post->thumbnail;
 
-        if(Storage::disk('public')->exists($path))
+
+
+        if($path === null)
         {
-            Storage::disk('public')->delete($path);
+            $post->delete();
+            return back()->with('success', 'Post Deleted! where null');
         }
 
-        $post->delete();
+        elseif(Storage::disk('public')->exists($path))
+        {
+            Storage::disk('public')->delete($path);
 
-        return back()->with('success', 'Post Deleted!');
+            $post->delete();
+
+            return back()->with('success', 'Post Deleted!');
+        }
+
+
     }
 
     protected function validatePost(?Post $post = null): array

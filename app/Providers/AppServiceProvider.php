@@ -9,6 +9,7 @@ use App\Services\Newsletter;
 use App\Services\MailchimpNewsletter;
 use MailchimpMarketing\ApiClient;
 use App\Models\User;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function (User $user) {
             return $user->username === 'Matt';
 
+        });
+
+
+        Blade::if('admin', function () {
+            return request()->user()?->can('admin');
         });
     }
 
