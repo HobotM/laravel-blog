@@ -9,9 +9,11 @@
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "itsgoingd/clockwork": "^5.1",
+        "jrean/laravel-user-verification": "^10.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "laravel/ui": "^4.1",
         "mailchimp/marketing": "^3.0",
         "rolandstarke/laravel-thumbnail": "^1.0",
         "spatie/yaml-front-matter": "^2.0"

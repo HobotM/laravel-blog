@@ -36,10 +36,22 @@ class AppServiceProvider extends ServiceProvider
             return $user->username === 'Matt';
 
         });
+        Gate::define('admin', function(User $user){
+            return $user->isAdmin === 1;
+        });
 
+        Gate::define('superAdmin', function(User $user){
+            return $user->isSuperAdmin === 1;
+        });
+        Gate::define('user', function(User $user){
+            return $user->isAdmin === 0 && $user->verified;
+        });
 
         Blade::if('admin', function () {
             return request()->user()?->can('admin');
+        });
+        Blade::if('user', function(){
+            return request()->user()->can('user');
         });
     }
 

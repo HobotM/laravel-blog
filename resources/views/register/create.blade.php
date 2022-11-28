@@ -55,7 +55,7 @@
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                         @enderror
                 </div>
-                 <!-- Confirm Password -->
+                 {{-- <!-- Confirm Password -->
                  <div class="mb-6">
 
                     <label for="password"
@@ -67,7 +67,7 @@
                     @error('password_confirmation')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> --}}
 
 
                 {{-- Submit button --}}

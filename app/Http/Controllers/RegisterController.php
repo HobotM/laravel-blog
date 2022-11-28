@@ -7,17 +7,21 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use App\Notifications\WelcomeEmail;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
 
 class RegisterController extends Controller
 {
+
     public function create()
     {
         return view('register.create');
     }
 
 
-    public function store()
+    public function store(Request $request)
     {
+
 
         $attributes = request()->validate([
             'name' => 'required|max:255',

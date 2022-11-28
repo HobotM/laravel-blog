@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fbad54254d4a16746bf62eb14ac672b",
+    "content-hash": "18b7ed35bfa27d10716fdcba8060af92",
     "packages": [
         {
             "name": "brick/math",
@@ -1050,6 +1050,73 @@
             "time": "2022-11-02T21:11:04+00:00"
         },
         {
+            "name": "jrean/laravel-user-verification",
+            "version": "v10.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jrean/laravel-user-verification.git",
+                "reference": "2079fd025c4d0aa568ceb731455754b57af24ea1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jrean/laravel-user-verification/zipball/2079fd025c4d0aa568ceb731455754b57af24ea1",
+                "reference": "2079fd025c4d0aa568ceb731455754b57af24ea1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^6.0 || ^7.0 || ^8.0|^9.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.12|^3.5",
+                "fzaninotto/faker": "^1.9|^1.5",
+                "mockery/mockery": "^1.3",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "satooshi/php-coveralls": "^2.0",
+                "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jrean\\UserVerification\\UserVerificationServiceProvider"
+                    ],
+                    "aliases": {
+                        "UserVerification": "Jrean\\UserVerification\\Facades\\UserVerification"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jrean\\UserVerification\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jean Ragouin",
+                    "email": "go@askjong.com"
+                }
+            ],
+            "description": "User Email Verification For Laravel",
+            "keywords": [
+                "email activation",
+                "email verification",
+                "framework",
+                "laravel",
+                "user activation",
+                "user verification"
+            ],
+            "support": {
+                "issues": "https://github.com/jrean/laravel-user-verification/issues",
+                "source": "https://github.com/jrean/laravel-user-verification/tree/v10.0.0"
+            },
+            "time": "2022-02-09T03:04:18+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v9.38.0",
             "source": {
@@ -1427,6 +1494,67 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.7.2"
             },
             "time": "2022-03-23T12:38:24+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "f2f879e9f0947a1ede12b0ff7446ce4e249479cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/f2f879e9f0947a1ede12b0ff7446ce4e249479cd",
+                "reference": "f2f879e9f0947a1ede12b0ff7446ce4e249479cd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^9.21",
+                "illuminate/filesystem": "^9.21",
+                "illuminate/support": "^9.21",
+                "illuminate/validation": "^9.21",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/ui/tree/v4.1.0"
+            },
+            "time": "2022-11-15T14:36:57+00:00"
         },
         {
             "name": "league/commonmark",
