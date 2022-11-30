@@ -6,7 +6,6 @@
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Foundation\Auth\RegistersUsers;
     use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
     use Illuminate\Http\Request;
     use Illuminate\Auth\Events\Registered;
     use Jrean\UserVerification\Traits\VerifiesUsers;
@@ -49,14 +48,14 @@
         {
             // Based on the workflow you need, you may update and customize the following lines.
 
-            $this->middleware(['guest'], ['except' => ['getVerification', 'getVerificationError', 'awaitingVerification']]);
+            $this->middleware(['guest'], ['except' => ['getVerification', 'getVerificationError', 'VerificationAwait']]);
         }
 
-        public function showRegistrationForm(){
+        public function RegistrationForm(){
             return view('register.create');
         }
 
-        public function awaitingVerification(){
+        public function VerificationAwait(){
             return view('register.verify');
         }
 
@@ -70,10 +69,10 @@
         {
 
             return Validator::make($data, [
-                'name'=> ['required','max:255'],
-                'username'=>['required','max:255','min:3',Rule::unique('users','username')],
-                'email' => ['required','email','max:255', Rule::unique('users','email')],
-                'password' => ['required','max:255','min:8']
+            'name' => 'required|max:255',
+            'username' => 'required|max:255|min:3|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:3|',
             ]);
         }
 
@@ -85,7 +84,7 @@
          */
         protected function create(array $data)
         {
-            return User::create($data);
+            return $user = User::create($data);
         }
 
         /**
@@ -94,6 +93,8 @@
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response
          */
+
+
         public function register(Request $request)
         {
             $this->validator($request->all())->validate();
@@ -102,15 +103,17 @@
 
             event(new Registered($user));
 
-            $this->guard()->login($user);
+            auth()->login($user);
+
+
 
             UserVerification::generate($user);
 
-            UserVerification::send($user, 'SpeakUp - Email Verification');
+            UserVerification::send($user, 'Email Verification');
 
             $user->notify(new WelcomeEmail($user));
 
             return $this->registered($request, $user)
-                            ?: redirect($this->redirectPath());
+            ?: redirect($this->redirectPath())->with('success', 'Your account has been created, check your email!');
         }
     }

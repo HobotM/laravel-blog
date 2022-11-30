@@ -20,6 +20,18 @@ class AdminUserController extends Controller
             'users' => User::paginate(50)
         ]);
     }
+    public function admins()
+    {
+        return view('admin.user.admins', [
+            'users' => User::paginate(50)->where('isAdmin', '1')
+        ]);
+    }
+    public function SuperAdmins()
+    {
+        return view('admin.user.superAdmins', [
+            'users' => User::paginate(50)->where('isSuperAdmin', '1')
+        ]);
+    }
     public function destroy(User $user)
     {
         if(request()->user()->id !== $user->id){

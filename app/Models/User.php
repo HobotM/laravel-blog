@@ -31,13 +31,12 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+
     ];
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
-
 
 
 

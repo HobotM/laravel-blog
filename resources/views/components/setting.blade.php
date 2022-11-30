@@ -20,9 +20,14 @@
                 <li>
                     <a href="/admin/users" class="{{request()->is('admin/users') ? 'text-blue-500' : ''}}">All Users</a>
                 </li>
+                <li>
+                    <a href="/admin/admins" class="{{request()->is('admin/admins') ? 'text-blue-500' : ''}}">Admins</a>
+                </li>
+                <li>
+                    <a href="/admin/superAdmins" class="{{request()->is('admin/superAdmins') ? 'text-blue-500' : ''}}">Super Admins</a>
+                </li>
             </ul>
         </aside>
-
         <main class="flex-1">
             <x-panel>
                 {{ $slot }}

@@ -11,11 +11,11 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="name">
                         Name
                     </label>
-                    <input class="border border-gray-400 p-2 w-full" type="text" name="name" id="name" value="{{old('name')}}"
-                        required>
-                        @error('name')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
+                    <input class="border border-gray-400 p-2 w-full" type="text" name="name" id="name"
+                        value="{{ old('name') }}" required>
+                    @error('name')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
 
@@ -24,12 +24,12 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="username">
                         Username
                     </label>
-                    <input class="border border-gray-400 p-2 w-full" type="text" name="username" id="username" value="{{old('username')}}"
-                        required>
+                    <input class="border border-gray-400 p-2 w-full" type="text" name="username" id="username"
+                        value="{{ old('username') }}" required>
 
-                        @error('username')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
+                    @error('username')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- email -->
@@ -37,37 +37,40 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="email">
                         Email
                     </label>
-                    <input class="border border-gray-400 p-2 w-full" type="email" name="email" id="email" value="{{old('email')}}"
-                        required>
-                        @error('email')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
+                    <input class="border border-gray-400 p-2 w-full" type="email" name="email" id="email"
+                        value="{{ old('email') }}" required>
+                    @error('email')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
-                <!-- Password -->
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="password">
-                        Password
-                    </label>
-                    <input class="border border-gray-400 p-2 w-full" type="password" name="password" id="password"
-                        required>
-                        @error('password')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
-                </div>
-                 {{-- <!-- Confirm Password -->
-                 <div class="mb-6">
+                <!-- Confirm Password -->
+                {{-- <div class="mb-6">
 
                     <label for="password"
                         class="block mb-2 uppercase font-bold text-xs text-gray-700">Confirm Password</label>
+                    <input id="password" class="border border-gray-400 p-2 w-full" type="password"
+                        name="password_confirmation" required placeholder=" repeat Your password" />
 
-                    <input id="password_confirmation" class="border border-gray-400 p-2 w-full" type="password"
-                        name="password_confirmation" required />
-
+                    <input id="password_confirmation" type="password" class="border border-gray-400 p-2 w-full" name="password_confirmation" required :value="_('Confirm Password')">
                     @error('password_confirmation')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div> --}}
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" :value="__('Password')"
+                        class="block mb-2 uppercase font-bold text-xs text-gray-700" />
+                    Password
+                    </label>
+                    <input class="border border-gray-400 p-2 w-full" id="password" type="password" name="password"
+                        required autocomplete="new-password" />
+                    @error('password')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
 
 
                 {{-- Submit button --}}
@@ -85,7 +88,7 @@
 
 
 
- {{-- <x-auth-card>
+{{-- <x-auth-card>
         <a href="/">
             <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
         </a>

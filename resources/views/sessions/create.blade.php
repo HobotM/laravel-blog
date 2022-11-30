@@ -7,14 +7,8 @@
                 <form method="POST" action="/sessions" class="mt-10">
                     @csrf
                     <x-form.input name="email" type="email" autocomplete="username"/>
-                    @error('email')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
                     <x-form.input name="password" type="password" autocomplete="new-password" />
                     <a href="{{ route('forget.password.get') }}" class="float-right text-blue-500 font-medium flex">Forgot password?</a>
-                    @error('password')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                        @enderror
                     {{-- Submit button --}}
                     <x-form.button>Log In</x-form.button>
 

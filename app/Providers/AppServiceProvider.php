@@ -32,23 +32,22 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::unguard();
 
-        Gate::define('admin', function (User $user) {
-            return $user->username === 'Matt';
-
-        });
         Gate::define('admin', function(User $user){
-            return $user->isAdmin === 1;
+            return $user->isAdmin == 1 && $user->verified;
         });
 
         Gate::define('superAdmin', function(User $user){
-            return $user->isSuperAdmin === 1;
+            return $user->isSuperAdmin === 1 && $user->verified;
         });
         Gate::define('user', function(User $user){
             return $user->isAdmin === 0 && $user->verified;
         });
 
         Blade::if('admin', function () {
-            return request()->user()?->can('admin');
+            return request()->user()->can('admin');
+        });
+        Blade::if('superAdmin', function () {
+            return request()->user()->can('superAdmin');
         });
         Blade::if('user', function(){
             return request()->user()->can('user');

@@ -39,28 +39,31 @@ use Illuminate\Validation\ValidationException;
     //email verification
     Route::group(['middleware' => ['isVerified']], function () {
 
+
     });
-
      //admin section
-     Route::post('admin/posts',[AdminPostController::class, 'store'])->middleware('can:admin');
-     Route::get('admin/posts/create',[AdminPostController::class, 'create'])->middleware('can:admin');
+    Route::post('admin/posts',[AdminPostController::class, 'store'])->middleware('can:admin');
+    Route::get('admin/posts/create',[AdminPostController::class, 'create'])->middleware('can:admin');
 
-     Route::get('admin/users',[AdminUserController::class, 'index'])->middleware('can:admin');
-     Route::delete('admin/users/{user}',[AdminUserController::class, 'destroy'])->middleware('can:admin');
+    Route::get('admin/users',[AdminUserController::class, 'index'])->middleware('can:admin');
+    Route::get('admin/admins',[AdminUserController::class, 'admins'])->middleware('can:admin');
+    Route::get('admin/superAdmins',[AdminUserController::class, 'superAdmins'])->middleware('can:admin');
+    Route::delete('admin/users/{user}',[AdminUserController::class, 'destroy'])->middleware('can:admin');
 
-     Route::get('admin/posts',[AdminPostController::class, 'index'])->middleware('can:admin');
-     Route::get('admin/posts/{post}/edit',[AdminPostController::class, 'edit'])->middleware('can:admin');
+    Route::get('admin/posts',[AdminPostController::class, 'index'])->middleware('can:admin');
+    Route::get('admin/posts/{post}/edit',[AdminPostController::class, 'edit'])->middleware('can:admin');
 
-     Route::patch('admin/posts/{post}',[AdminPostController::class, 'update'])->middleware('can:admin');
-     Route::delete('admin/posts/{post}',[AdminPostController::class, 'destroy'])->middleware('can:admin');
+    Route::patch('admin/posts/{post}',[AdminPostController::class, 'update'])->middleware('can:admin');
+    Route::delete('admin/posts/{post}',[AdminPostController::class, 'destroy'])->middleware('can:admin');
 
 
-    Route::get('email-verification',[RegisterController::class, 'awaitingVerification'])->name('email-verification');
+
+    Route::get('email-verification',[RegisterController::class, 'VerificationAwait'])->name('email-verification');
     Route::get('email-verification/error', [RegisterController::class, 'getVerificationError'])->name('email-verification.error');
     Route::get('email-verification/check/{token}', [RegisterController::class, 'getVerification'])->name('email-verification.check');
 
     //register
-    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->middleware('guest');
+    Route::get('register', [RegisterController::class, 'RegistrationForm'])->middleware('guest');
     Route::post('register', [RegisterController::class, 'register'])->middleware('guest');
 
 
