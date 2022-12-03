@@ -17,7 +17,7 @@ class AdminUserController extends Controller
     public function index()
     {
         return view('admin.user.index', [
-            'users' => User::paginate(50)
+            'users' => User::paginate(50)->where('isAdmin', '0')->where('isSuperAdmin', '0')
         ]);
     }
     public function admins()
@@ -32,6 +32,30 @@ class AdminUserController extends Controller
             'users' => User::paginate(50)->where('isSuperAdmin', '1')
         ]);
     }
+
+    public function edit(User $user)
+    {
+        return view('admin.user.edit', ['user' => $user]);
+    }
+
+    public function update(User $user)
+    {
+        $attributes = request()->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|max:255|min:3|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'isAdmin' => 'integer',
+
+        ]);
+
+        $user->isAdmin = (int)$attributes['isAdmin'] ? 1 : 0;
+
+        $user->update($attributes);
+        $user->save();
+
+        return back()->with('success', 'User details Updated!');
+    }
+
     public function destroy(User $user)
     {
         if(request()->user()->id !== $user->id){
@@ -48,9 +72,6 @@ class AdminUserController extends Controller
         }
         else
         return back()->with('error', 'Cannot delete');
-
-
-
 
     }
 

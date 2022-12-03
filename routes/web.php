@@ -58,6 +58,10 @@ use Illuminate\Validation\ValidationException;
 
 
 
+    Route::get('admin/users/{user}/edit',[AdminUserController::class, 'edit'])->middleware('can:admin');
+    Route::patch('admin/users/{user}',[AdminUserController::class, 'update'])->middleware('can:admin');
+
+
     Route::get('email-verification',[RegisterController::class, 'VerificationAwait'])->name('email-verification');
     Route::get('email-verification/error', [RegisterController::class, 'getVerificationError'])->name('email-verification.error');
     Route::get('email-verification/check/{token}', [RegisterController::class, 'getVerification'])->name('email-verification.check');
