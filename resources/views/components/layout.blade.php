@@ -45,6 +45,11 @@
                         <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
                         @endif
 
+                        @user()
+                        <x-dropdown-item href="/user/posts" :active="request()->is('user/posts')">Dashboard</x-dropdown-item>
+                        <x-dropdown-item href="/user/posts/create" :active="request()->is('user/posts/create')">New Post</x-dropdown-item>
+                        @enduser
+
 
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                         <form method="POST" id="logout-form" action="/logout" class="hidden">

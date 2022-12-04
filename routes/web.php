@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PostCommentsController;
@@ -41,6 +42,11 @@ use Illuminate\Validation\ValidationException;
 
 
     });
+    //user actions
+    Route::get('user/posts/create',[UserPostController::class, 'create'])->middleware('can:user');
+
+
+
      //admin section
     Route::post('admin/posts',[AdminPostController::class, 'store'])->middleware('can:admin');
     Route::get('admin/posts/create',[AdminPostController::class, 'create'])->middleware('can:admin');
