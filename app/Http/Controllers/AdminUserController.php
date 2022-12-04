@@ -42,14 +42,12 @@ class AdminUserController extends Controller
     {
         $attributes = request()->validate([
             'name' => 'required|max:255',
-            'username' => 'required|max:255|min:3|unique:users,username',
-            'email' => 'required|email|max:255|unique:users,email',
-            'isAdmin' => 'integer',
+            'username' => 'required|max:255|min:3',
+            'email' => 'required|email|max:255',
+            'isAdmin' => 'nullable|boolean',
 
         ]);
-
-        $user->isAdmin = (int)$attributes['isAdmin'] ? 1 : 0;
-
+        $user->isAdmin = !!$user->isAdmin;
         $user->update($attributes);
         $user->save();
 

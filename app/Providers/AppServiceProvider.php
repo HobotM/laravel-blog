@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Model::unguard();
 
         Gate::define('admin', function(User $user){
-            return $user->isAdmin == 1 && $user->verified;
+            return $user->isAdmin == true && $user->verified;
         });
 
         Gate::define('superAdmin', function(User $user){

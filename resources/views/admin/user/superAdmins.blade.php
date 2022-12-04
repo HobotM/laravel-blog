@@ -30,12 +30,6 @@
                                 Number of Posts
                             </th>
 
-                            @superAdmin()
-                            <th colspan="2"
-                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Action
-                            </th>
-                            @endsuperAdmin
 
                         </tr>
 
@@ -79,19 +73,7 @@
                             </td>
 
 
-                            @superAdmin()
-                            <td
-                            class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
 
-                                <form method="POST" action="/admin/users/{{$user->id}}">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-600 hover:text-white focus:outline-none">Edit</button>
-                                </form>
-
-                            </td>
-                            @endsuperAdmin
 
 
                         </tr>

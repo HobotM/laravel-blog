@@ -47,11 +47,17 @@ use Illuminate\Validation\ValidationException;
 
     Route::get('admin/users',[AdminUserController::class, 'index'])->middleware('can:admin');
     Route::get('admin/admins',[AdminUserController::class, 'admins'])->middleware('can:admin');
+
+
     Route::get('admin/superAdmins',[AdminUserController::class, 'superAdmins'])->middleware('can:admin');
-    Route::delete('admin/users/{user}',[AdminUserController::class, 'destroy'])->middleware('can:admin');
+    Route::delete('admin/users/{user}',[AdminUserController::class, 'destroy'])->middleware('can:superAdmin');
+
+    Route::delete('admin/admins/{user}',[AdminUserController::class, 'destroy'])->middleware('can:superAdmin');
+    Route::get('admin/admins/{user}/edit',[AdminUserController::class, 'edit'])->middleware('can:superAdmin');
 
     Route::get('admin/posts',[AdminPostController::class, 'index'])->middleware('can:admin');
     Route::get('admin/posts/{post}/edit',[AdminPostController::class, 'edit'])->middleware('can:admin');
+
 
     Route::patch('admin/posts/{post}',[AdminPostController::class, 'update'])->middleware('can:admin');
     Route::delete('admin/posts/{post}',[AdminPostController::class, 'destroy'])->middleware('can:admin');

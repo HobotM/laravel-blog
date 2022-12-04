@@ -33,7 +33,7 @@
                             <th colspan="2"
                             class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Action
-                        </th>
+                            </th>
                         </tr>
                         @foreach ( $users as $user )
 
