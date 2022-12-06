@@ -44,7 +44,7 @@ use Illuminate\Validation\ValidationException;
     });
     //user actions
     Route::get('user/posts/create',[UserPostController::class, 'create'])->middleware('can:user');
-
+    Route::post('user/posts',[AdminPostController::class, 'store'])->middleware('can:user');
 
 
      //admin section
