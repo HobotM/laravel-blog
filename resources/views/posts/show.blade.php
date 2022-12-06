@@ -52,6 +52,11 @@
                     <div class="space-y-4 lg:text-lg leading-loose">
                         {!! $post->body !!}
                     </div>
+
+                    <div class="flex-1 lg:mr-8">
+
+                    <img src="{{ asset('/' . $post->thumbnail)}}" alt="Blog Post illustration" class="rounded-xl">
+                    </div>
                 </div>
 
                 {{-- COMMENTS SECTION --}}

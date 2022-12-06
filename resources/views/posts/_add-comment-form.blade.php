@@ -2,7 +2,7 @@
     <x-panel>
         <form method="POST" action="/posts/{{ $post->slug }}/comments">
             @csrf
-            <header class="flex items-center">
+            <header class="flex items-center ">
                 <img src="https://i.pravatar.cc/100?u={{ auth()->id() }}" width="40" height="40" class="rounded-full"
                     alt="">
 

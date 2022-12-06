@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Laravel From Scratch Blog</title>
+<title>Photo blog</title>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,12 +24,13 @@
 
 
 
-<body style="font-family: Open Sans, sans-serif">
-    <section class="px-6 py-8">
-        <nav class="md:flex md:justify-between md:items-center">
+<body  style="font-family: Open Sans, sans-serif; background-image:url('https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');"
+     class="w-full h-full bg-cover">
+    <section >
+        <nav class="md:flex md:justify-between md:items-center bg-gray-100 border-b-4 border-black border-opacity-5 rounded-b-xl p-2 ">
             <div>
                 <a href="/">
-                    <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
+                    <img src="/images/logo1.png" alt="Photography Logo" width="165" height="16">
                 </a>
             </div>
 
@@ -78,9 +79,9 @@
 
         <footer id="newsletter"
             class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
-            <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
+            <img src="/images/logo.jpg" alt="" class="mx-auto -mb-6" style="width: 145px;">
             <h5 class="text-3xl">Stay in touch with the latest posts</h5>
-            <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
+            
 
             <div class="mt-10">
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
