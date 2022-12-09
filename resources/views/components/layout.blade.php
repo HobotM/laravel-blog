@@ -46,8 +46,9 @@
                         <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
                         @endif
 
+
                         @user()
-                        <x-dropdown-item href="/user/posts" :active="request()->is('user/posts')">Dashboard</x-dropdown-item>
+                        <x-dropdown-item href="/user/posts" :active="request()->is('user/posts')">My Profile</x-dropdown-item>
                         <x-dropdown-item href="/user/posts/create" :active="request()->is('user/posts/create')">New Post</x-dropdown-item>
                         @enduser
 

@@ -73,4 +73,14 @@ class AdminUserController extends Controller
 
     }
 
+    public function store()
+    {
+        Post::create(array_merge($this->validatePost(), [
+            'user_id' => request()->user()->id,
+            'thumbnail' => request()->file('thumbnail')->store('/images/thumbnails')
+        ]));
+
+        return redirect('/');
+    }
+
 }

@@ -2,16 +2,45 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class UserPostController extends Controller
 {
+
+    public function index()
+    {
+        return view('user.posts.index', [
+            'posts' => Post::paginate(50)->where('user_id', auth()->id())
+        ]);
+    }
     public function create()
     {
-        return view('user.create');
+        return view('user.posts.create');
     }
 
 
+
+    public function profile(User $user)
+    {
+        $attributes = request()->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|max:255|min:3',
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6|string',
+
+        ]);
+        
+        $user->update($attributes);
+        $user->save();
+
+        return back()->with('success', 'User details Updated!');
+    }
 
     public function store()
     {
@@ -21,5 +50,29 @@ class UserPostController extends Controller
         ]));
 
         return redirect('/');
+    }
+
+    protected function validatePost(?Post $post = null): array
+    {
+        $post ??= new Post();
+
+        return request()->validate([
+            'title' => 'required',
+            'thumbnail' => $post->exists ? ['image', 'max:15000'] : ['required', 'image', 'max:15000'],
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
+            'excerpt' => 'required',
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
+    }
+
+    public function edit(Post $post, User $user)
+    {
+        if ($post->user_id !== auth()->id()){
+            abort(403);
+        }
+        else {
+            return view('user.posts.edit', ['post' => $post]);
+        }
     }
 }

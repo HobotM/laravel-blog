@@ -42,9 +42,14 @@ use Illuminate\Validation\ValidationException;
 
 
     });
+
     //user actions
+    Route::post('user/posts',[UserPostController::class, 'store'])->middleware('can:user');
     Route::get('user/posts/create',[UserPostController::class, 'create'])->middleware('can:user');
-    Route::post('user/posts',[AdminPostController::class, 'store'])->middleware('can:user');
+    Route::get('user/posts',[UserPostController::class, 'index'])->middleware('can:user');
+    Route::patch('user/posts/{post}',[UserPostController::class, 'update'])->middleware('can:user');
+    Route::get('user/posts/{post}/edit',[UserPostController::class, 'edit'])->middleware('can:user');
+
 
 
      //admin section

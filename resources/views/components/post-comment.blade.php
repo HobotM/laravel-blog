@@ -1,5 +1,5 @@
 @props(['comment'])
-<x-panel class="bg-gray-100">
+<x-panel class="bg-gray-500">
 <article class="flex space-x-4">
     <div class="flex-shrink-0">
         <img src="https://i.pravatar.cc/100?u={{$comment->user_id}}" width="60" height="50" class="rounded-xl" alt="">

@@ -11,12 +11,16 @@
 
             <ul>
                 <li>
-                    <a href="/admin/posts" class="{{request()->is('admin/posts') ? 'text-blue-500' : ''}}">All My Posts</a>
+                    <a href="/user/posts" class="{{request()->is('user/posts') ? 'text-blue-500' : ''}}">My Posts</a>
                 </li>
 
                 <li>
-                    <a href="/admin/posts/create" class="{{request()->is('admin/posts/create') ? 'text-blue-500' : ''}}">New Post</a>
+                    <a href="/user/posts/create" class="{{request()->is('user/posts/create') ? 'text-blue-500' : ''}}">New Post</a>
                 </li>
+                <li>
+                    <a href="/user/details" class="{{request()->is('user/details') ? 'text-blue-500' : ''}}">My Details</a>
+                </li>
+               
             </ul>
         </aside>
         <main class="flex-1">
