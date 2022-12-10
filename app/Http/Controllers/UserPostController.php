@@ -9,6 +9,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserPostController extends Controller
 {
@@ -24,7 +26,40 @@ class UserPostController extends Controller
         return view('user.posts.create');
     }
 
+    public function update(Post $post)
+    {
+        $attributes = $this->validatePost($post);
 
+        if ($attributes['thumbnail'] ?? false) {
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+
+        $post->update($attributes);
+
+        return back()->with('success', 'Post Updated!');
+    }
+
+    public function destroy(Post $post)
+    {
+
+        $path = $post->thumbnail;
+        if($path === null)
+        {
+            $post->delete();
+            return back()->with('success', 'Post Deleted!');
+        }
+
+        elseif(Storage::disk('public')->exists($path))
+        {
+            Storage::disk('public')->delete($path);
+
+            $post->delete();
+
+            return back()->with('success', 'Post Deleted!');
+        }
+
+
+    }
 
     public function profile(User $user)
     {

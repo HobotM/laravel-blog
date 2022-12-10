@@ -10,6 +10,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\UserDetailsController;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
@@ -39,16 +40,23 @@ use Illuminate\Validation\ValidationException;
 
     //email verification
     Route::group(['middleware' => ['isVerified']], function () {
+        //user actions
+        Route::post('user/posts',[UserPostController::class, 'store'])->middleware('can:user');
+        Route::get('user/posts/create',[UserPostController::class, 'create'])->middleware('can:user');
+        Route::get('user/posts',[UserPostController::class, 'index'])->middleware('can:user');
+        Route::patch('user/posts/{post}',[UserPostController::class, 'update'])->middleware('can:user');
+        Route::get('user/posts/{post}/edit',[UserPostController::class, 'edit'])->middleware('can:user');
+        Route::patch('user/posts/{post}',[UserPostController::class, 'update'])->middleware('can:user');
+        Route::delete('user/posts/{post}',[UserPostController::class, 'destroy'])->middleware('can:user');
 
+
+        Route::get('user/details',[UserDetailsController::class, 'index'])->middleware('can:user');
+        Route::get('user/details/{user}/edit',[UserDetailsController::class, 'edit'])->middleware('can:user');
+        Route::patch('user/details/{user}',[UserDetailsController::class, 'update'])->middleware('can:user');
 
     });
 
-    //user actions
-    Route::post('user/posts',[UserPostController::class, 'store'])->middleware('can:user');
-    Route::get('user/posts/create',[UserPostController::class, 'create'])->middleware('can:user');
-    Route::get('user/posts',[UserPostController::class, 'index'])->middleware('can:user');
-    Route::patch('user/posts/{post}',[UserPostController::class, 'update'])->middleware('can:user');
-    Route::get('user/posts/{post}/edit',[UserPostController::class, 'edit'])->middleware('can:user');
+   
 
 
 
