@@ -20,6 +20,10 @@ class AdminUserController extends Controller
             'users' => User::paginate(50)->where('isAdmin', '0')->where('isSuperAdmin', '0')
         ]);
     }
+    public function details(User $user)
+    {
+        return view('admin.details.index',  ['user' => $user])->with('user_id', auth()->id());
+    }
     public function admins()
     {
         return view('admin.user.admins', [
@@ -41,9 +45,7 @@ class AdminUserController extends Controller
     public function update(User $user)
     {
         $attributes = request()->validate([
-            'name' => 'required|max:255',
             'username' => 'required|max:255|min:3',
-            'email' => 'required|email|max:255',
             'isAdmin' => 'nullable|boolean',
 
         ]);

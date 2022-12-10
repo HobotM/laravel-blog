@@ -51,8 +51,7 @@ use Illuminate\Validation\ValidationException;
 
 
         Route::get('user/details',[UserDetailsController::class, 'index'])->middleware('can:user');
-        Route::get('user/details/{user}/edit',[UserDetailsController::class, 'edit'])->middleware('can:user');
-        Route::patch('user/details/{user}',[UserDetailsController::class, 'update'])->middleware('can:user');
+        Route::post('/change-password', [UserDetailsController::class, 'updatePassword'])->name('update-password');
 
     });
 
@@ -66,6 +65,10 @@ use Illuminate\Validation\ValidationException;
 
     Route::get('admin/users',[AdminUserController::class, 'index'])->middleware('can:admin');
     Route::get('admin/admins',[AdminUserController::class, 'admins'])->middleware('can:admin');
+    
+
+    Route::get('admin/details',[AdminUserController::class, 'details'])->middleware('can:admin');
+    Route::post('/change-password', [UserDetailsController::class, 'updatePassword'])->name('update-password');
 
 
     Route::get('admin/superAdmins',[AdminUserController::class, 'superAdmins'])->middleware('can:admin');

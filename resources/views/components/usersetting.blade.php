@@ -8,7 +8,7 @@
 
         <aside class="w-48 flex-shrink-0">
             <h4 class="font-semibold mb-4">Links</h4>
-
+            @user()
             <ul>
                 <li>
                     <a href="/user/posts" class="{{request()->is('user/posts') ? 'text-blue-500' : ''}}">My Posts</a>
@@ -22,6 +22,7 @@
                 </li>
                
             </ul>
+            @enduser
         </aside>
         <main class="flex-1">
             <x-panel>

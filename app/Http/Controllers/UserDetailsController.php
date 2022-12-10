@@ -9,7 +9,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AdminPostController;
-
+use Illuminate\Support\Facades\Hash;
 
 
 class UserDetailsController extends Controller
@@ -18,19 +18,28 @@ class UserDetailsController extends Controller
     {
         return view('user.details.index',  ['user' => $user])->with('user_id', auth()->id());
     }
-    public function update(User $user)
-    {
-        $attributes = request()->validate([
-            'name' => 'required|max:255',
-            'username' => 'required|max:255|min:3',
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6|string',
+   
+    public function updatePassword(Request $request)
+{
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
         ]);
-        
-        $user->update($attributes);
-        $user->save();
 
-        return back()->with('success', 'Your details are updated successfully!');
-    }
+
+        #Match The Old Password
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with("success", "Password changed successfully!");
+}
 
 }
